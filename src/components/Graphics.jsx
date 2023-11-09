@@ -279,8 +279,8 @@ const Graphics = ({functionData, histogramData}) => {
             <h2>Полигон и гистограмма</h2>
             <canvas width={400} height={400} ref={histogramCanvasRef}/>
         </>
-    );
-};
+    )
+}
 
 Graphics.propTypes = {
     functionData: PropTypes.array,

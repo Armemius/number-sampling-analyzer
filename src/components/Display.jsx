@@ -118,8 +118,8 @@ const Display = ({data}) => {
             </div>
             <Graphics functionData={functionValues} histogramData={histogramValues} />
         </>
-    );
-};
+    )
+}
 
 Display.propTypes = {
     data: PropTypes.arrayOf(PropTypes.number)

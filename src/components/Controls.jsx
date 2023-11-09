@@ -23,11 +23,11 @@ const Controls = ({setData}) => {
             <h2>Ввод данных</h2>
             <input id="sample-input" type="text" onChange={processInput}/>
         </div>
-    );
-};
+    )
+}
 
 Controls.propTypes = {
     setData: PropTypes.func
 }
 
-export default Controls;
+export default Controls
