@@ -274,10 +274,14 @@ const Graphics = ({functionData, histogramData}) => {
 
     return (
         <>
-            <h2>График эмпирической функции</h2>
-            <canvas width={400} height={400} ref={functionCanvasRef}/>
-            <h2>Полигон и гистограмма</h2>
-            <canvas width={400} height={400} ref={histogramCanvasRef}/>
+            <section>
+                <h2>График функции</h2>
+                <canvas width={400} height={400} ref={functionCanvasRef}/>
+            </section>
+            <section>
+                <h2>Полигон и гистограмма</h2>
+                <canvas width={400} height={400} ref={histogramCanvasRef}/>
+            </section>
         </>
     )
 }

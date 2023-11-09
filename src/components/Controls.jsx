@@ -19,10 +19,13 @@ const Controls = ({setData}) => {
     }
 
     return (
-        <div>
-            <h2>Ввод данных</h2>
-            <input id="sample-input" type="text" onChange={processInput}/>
-        </div>
+        <section>
+            <h1>Ввод данных</h1>
+            <input type="text"
+                   onChange={processInput}
+                   placeholder={"1, 2, 3, 4, 5..."}
+            />
+        </section>
     )
 }
 

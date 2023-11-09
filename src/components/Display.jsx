@@ -26,13 +26,13 @@ const Display = ({data}) => {
 
         const functionValues = []
         let sum = 0
-        functionValues.push([["-∞", uniqueData[0]], sum])
+        functionValues.push([["-inf", uniqueData[0]], sum])
         sum += data.count(uniqueData[0]) / size
         for (let it = 1; it < uniqueData.length; ++it) {
             functionValues.push([[uniqueData[it - 1], uniqueData[it]], sum])
             sum += data.count(uniqueData[it]) / size
         }
-        functionValues.push([[uniqueData[uniqueData.length - 1], "∞"], 1])
+        functionValues.push([[uniqueData[uniqueData.length - 1], "inf"], 1])
 
         const histogramValues = []
         const histogramRange = Math.round(((sortedData[size - 1] - sortedData[0]) / (Math.log2(size) + 1)) * 10) / 10
@@ -62,62 +62,74 @@ const Display = ({data}) => {
 
     if (data.length <= 1) {
         return (
-            <>
+            <section>
                 <div>
                     Недостаточно данных
                 </div>
-            </>
+            </section>
         )
     }
 
     return (
-        <>
-            <div>
-                <h2>Исходные данные</h2>
-                [{[...data].join("; ")}]
-            </div>
-            <div>
-                <h2>Вариационный ряд</h2>
-                [{[...sortedData].join("; ")}]
-            </div>
-            <div>
-                <h2>Экстремальные значения</h2>
-                <div>
-                    1-ая порядковая статистика: {sortedData[0]}
-                </div>
-                <div>
-                    {sortedData.length}-ая порядковая статистика: {sortedData[sortedData.length - 1]}
-                </div>
-                <div>
-                    Разброс: {Math.abs(sortedData[sortedData.length - 1] - sortedData[0])}
-                </div>
-            </div>
-            <div>
-                <h2>Оценка математического ожидания</h2>
-                {expectationEstimation}
-            </div>
-            <div>
-                <h2>Среднеквадратичное отклонение</h2>
-                {standardDeviation}
-            </div>
-            <div>
-                <h2>Данные для эмпирической функции распределения</h2>
-                {functionValues.map((it, index) =>
-                    <div key={it[1]}>
-                        x ∈ ({it[0][0]}; {it[0][1]}{index === functionValues.length - 1 ? ")" : "]"} : {it[1].toFixed(2)}
+        <section className="results">
+            <h1>Результаты анализа выборки</h1>
+            <section>
+                <article>
+                    <h2>Исходные данные</h2>
+                    [{[...data].join("; ")}]
+                </article>
+                <article>
+                    <h2>Вариационный ряд</h2>
+                    [{[...sortedData].join("; ")}]
+                </article>
+                <article>
+                    <h2>Экстремальные значения</h2>
+                    <div>
+                        1-ая порядковая статистика: {sortedData[0]}
                     </div>
-                )}
-            </div>
-            <div>
-                <h2>Данные для гистограммы</h2>
-                {histogramValues.map(it =>
-                    <div key={`${it[0][0]}->${it[0][1]}`}>
-                        [{it[0][0]}; {it[0][1]}) Частота: {it[1]} Частотность: {it[2]}
+                    <div>
+                        {sortedData.length}-ая порядковая статистика: {sortedData[sortedData.length - 1]}
                     </div>
-                )}
-            </div>
+                    <div>
+                        Разброс: {Math.abs(sortedData[sortedData.length - 1] - sortedData[0])}
+                    </div>
+                </article>
+                <article>
+                    <h2>Оценка математического ожидания</h2>
+                    {expectationEstimation}
+                </article>
+                <article>
+                    <h2>Среднеквадратичное отклонение</h2>
+                    {standardDeviation}
+                </article>
+                <article>
+                    <h2>Данные для функции</h2>
+                    <div className="function-data-container">
+                        {functionValues.map((it, index) =>
+                            <>
+                                <span>x ∈</span>
+                                <span>({it[0][0]}; {it[0][1]}{index === functionValues.length - 1 ? ")" : "]"}</span>
+                                <span>:</span>
+                                <span>{it[1].toFixed(2)}</span>
+                            </>
+                        )}
+                    </div>
+                </article>
+                <article>
+                    <h2>Данные для гистограммы</h2>
+                    <div className="histogram-data-container">
+                        {histogramValues.map(it =>
+                            <>
+                                <span>[{it[0][0].toFixed(2)}; {it[0][1].toFixed(2)})</span>
+                                <span>Кол-во элементов: {it[1]}</span>
+                                <span>Частотность: {it[2]}</span>
+                            </>
+                        )}
+                    </div>
+                </article>
+            </section>
             <Graphics functionData={functionValues} histogramData={histogramValues} />
-        </>
+        </section>
     )
 }
 
