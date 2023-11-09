@@ -1,10 +1,8 @@
 import PropTypes from "prop-types";
 import {useEffect, useState} from "react";
+import Graphics from "./Graphics.jsx";
 
 const Display = ({data}) => {
-    // Test values
-    // -0.26, -0.58, 1.49, -0.84, -1.54, 1.13, -1.33, -0.78, -1.68, -0.94, -1.55, 1.54, 0.34, 0.58, -0.84, -1.58, -1.72, -0.49, 0.34, -0.14
-
     const [sortedData, setSortedData] = useState([])
     const [expectationEstimation, setExpectationEstimation] = useState(0)
     const [standardDeviation, setStandardDeviation] = useState(0)
@@ -118,6 +116,7 @@ const Display = ({data}) => {
                     </div>
                 )}
             </div>
+            <Graphics functionData={functionValues} histogramData={histogramValues} />
         </>
     );
 };
