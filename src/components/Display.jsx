@@ -96,11 +96,11 @@ const Display = ({data}) => {
                 </article>
                 <article>
                     <h2>Оценка математического ожидания</h2>
-                    {expectationEstimation}
+                    {expectationEstimation.toFixed(4)}
                 </article>
                 <article>
                     <h2>Среднеквадратичное отклонение</h2>
-                    {standardDeviation}
+                    {standardDeviation.toFixed(4)}
                 </article>
                 <article>
                     <h2>Данные для функции</h2>
@@ -122,7 +122,7 @@ const Display = ({data}) => {
                             <>
                                 <span>[{it[0][0].toFixed(2)}; {it[0][1].toFixed(2)})</span>
                                 <span>Кол-во элементов: {it[1]}</span>
-                                <span>Частотность: {it[2]}</span>
+                                <span>Частотность: {it[2].toFixed(2)}</span>
                             </>
                         )}
                     </div>

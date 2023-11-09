@@ -52,8 +52,10 @@ h2 {
     gap: 3px 10px;
 }
 
-@media (max-width: 1470px) {
+@media screen and (max-width: 1470px) {
     .results {
-        grid-template-columns: 1fr 1fr;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
 }
